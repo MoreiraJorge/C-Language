@@ -6,10 +6,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void printnumbers(int n){
+int printnumbers(int n){
     
     int i;
     for (i = 1; i <= n; i++){
         printf("%d", i);
     }
+    
 }

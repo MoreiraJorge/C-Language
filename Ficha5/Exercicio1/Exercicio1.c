@@ -10,18 +10,17 @@
 #define SIZE 20
 
 int main(int argc, char** argv) {
-    
+
     int i, numbers[SIZE];
-    
-    for(; i < SIZE; ++i){
-        numbers[i]= i;
+
+    for (; i < SIZE; ++i) {
+        numbers[i] = i;
     }
-    
-    for (i = 0; i < SIZE; ++i){
+
+    for (i = 0; i < SIZE; ++i) {
         printf(" %d", numbers[i]);
     }
-    
-    
+
     return (EXIT_SUCCESS);
 }
 

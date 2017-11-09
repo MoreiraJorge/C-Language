@@ -12,11 +12,11 @@
 
 int main(int argc, char** argv) {
     int i, numbers[END];
-    
+
     for (; i < END; ++i) {
         numbers[i] = i + BEGIN;
     }
-    
+
     for (i = 0; i < END; ++i) {
         printf(" %d", numbers[i]);
     }

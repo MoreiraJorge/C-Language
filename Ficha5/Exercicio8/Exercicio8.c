@@ -10,12 +10,12 @@
 #define MAX 1000
 
 int main(int argc, char** argv) {
-    int numbers[MAX], i, num;
+    int numbers[MAX], i = 0, num;
 
     puts("introduza um numero");
     scanf("%d", &num);
 
-    if (num >= 1000 && num <= 0) {
+    if (num <= MAX) {
         for (i = 0; i < num; ++i) {
             numbers[i] = i;
         }
@@ -36,8 +36,10 @@ int main(int argc, char** argv) {
             numbers[i] = 0;
         }
 
-        for (i = 2; i < MAX; ++i) {
-            printf("%d\n ", numbers[i]);
+        for (i = 2; i < num; ++i) {
+            if (numbers[i] != 0) {
+                printf("%d\n ", numbers[i]);
+            }
         }
     } else {
         puts("NUMERO FORA DO LIMITE!!");

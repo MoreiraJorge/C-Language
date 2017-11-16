@@ -35,6 +35,7 @@ int askarrayB(int arrayB[]) {
 
 void printarrayA(int arrayA[]) {
     int i;
+    puts("Array A");
     for (i = 0; i < MAX; i++) {
         printf("%d ", arrayA[i]);
     }
@@ -44,6 +45,7 @@ void printarrayA(int arrayA[]) {
 
 void printarrayB(int arrayB[]) {
     int i;
+    puts("Array B");
     for (i = 0; i < MAX; i++) {
         printf("%d ", arrayB[i]);
     }
@@ -53,8 +55,14 @@ void printarrayB(int arrayB[]) {
 
 void buildarrayC(int arrayC[], int arrayA[], int arrayB[]) {
     int i;
-    for (i = 0; i < MAX; i++) {
-        arrayC[i] = arrayA[i] + arrayB[i];
+    puts("Array C");
+    for (i = 0; i < MAX; ++i) {
+        arrayC[i] = arrayA[i];
+        printf("%2d ", arrayC[i]);
+    }
+
+    for (i = 0; i < MAX; ++i) {
+        arrayC[i + 10] = arrayB[i];
         printf("%d ", arrayC[i]);
     }
 }
@@ -65,6 +73,8 @@ void buildarrayD(int arrayA[], int arrayB[], int arrayD[]) {
     int i, j;
     int count = 0;
     int countarray = 0;
+
+    puts("Array D");
     for (i = 0; i < MAX; ++i) {
         for (j = 0; j < MAX; ++j) {
             if (arrayA[i] == arrayB[j]) {
@@ -92,6 +102,7 @@ void buildarrayE(int arrayA[], int arrayB[], double arrayE[]) {
     int count = 0;
     int verify = 0;
 
+    puts("Array E");
     for (i = 0; i < MAX; ++i) {
         arrayE[i] = 0.5;
     }

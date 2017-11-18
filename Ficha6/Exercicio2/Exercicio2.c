@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include "string.h"
 #include "Utils.h"
-#define MAX 30
+#define MAX 25
 
 int main(int argc, char** argv) {
     

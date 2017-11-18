@@ -6,8 +6,7 @@
  */
 
 #include <stdio.h>
-#include <stdlib.h>
-#include "Utils.h"
+#include <string.h>
 
 void clean_buffer() {
     char ch;

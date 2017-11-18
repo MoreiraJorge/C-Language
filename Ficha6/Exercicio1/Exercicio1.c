@@ -7,7 +7,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include    "Utils.h"
+#include <string.h>
+#include "Utils.h"
 
 
 int main(int argc, char** argv) {

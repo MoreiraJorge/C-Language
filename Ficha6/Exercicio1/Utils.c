@@ -6,6 +6,7 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 void clean_buffer() {
@@ -16,8 +17,8 @@ void clean_buffer() {
 int lerString(char *string, int max) {
     if (fgets(string, max, stdin) != NULL) {
         int tamanho = strlen(string) - 1;
-        if (string[tamanho] == ‘\n’) {
-            string[tamanho] = ‘\0’;
+        if (string[tamanho] == '\n') {
+            string[tamanho] = '\0';
         } else {
             clean_buffer();
         }

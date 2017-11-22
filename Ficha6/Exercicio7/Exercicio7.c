@@ -20,14 +20,14 @@ int main(int argc, char** argv) {
     puts("Escreva o nome completo:");
     lerString(frase1, MAX);
     
-    total = strlen(frase1);
+    total = strlen(frase1); //total caracteres com espacos
     
-    for (i = 0; i < MAX; ++i) {
+    for (i = 0; i < MAX; ++i) { //contar espacos
         if (frase1[i] == ' ') {
             ++contador;
         }
     }
-
+                //tirar espacos ao total e imprimir
     printf("Numero de caracteres: %d\n", total - contador);
 
     return (EXIT_SUCCESS);

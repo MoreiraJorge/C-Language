@@ -16,9 +16,9 @@ int main(int argc, char** argv) {
     
     int matriz[LINHAS][COLUNAS];
     
-    pedirmatriz(matriz);
+    pedirmatriz(matriz);//matriz normal
     printmatriz(matriz);
-    printmatrizB(matriz);
+    printmatrizB(matriz);//transposta
     
     return (EXIT_SUCCESS);
 }

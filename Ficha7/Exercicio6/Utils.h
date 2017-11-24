@@ -10,12 +10,12 @@
 
 int linhas, colunas;
 
-int pedirtamanho();
+
 void pedirmatrizA(int matriz[][colunas]);
 void printmatrizA(int matriz[][colunas]);
 void pedirmatrizB(int matriz[][colunas]);
 void printmatrizB(int matriz[][colunas]);
-void matrizcFINAL(int matrizA[][colunas], int matrizB[][colunas]);
+
 
 
 

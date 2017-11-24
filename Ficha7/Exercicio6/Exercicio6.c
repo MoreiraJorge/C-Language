@@ -10,20 +10,13 @@
 #include "Utils.h"
 #define MAX 10
 
-int linhas, colunas;
 
 
 int main(int argc, char** argv) {
     
-    int matrizA[linhas][colunas];
-    int matrizB[linhas][colunas];
+
    
-    pedirtamanho();
-    pedirmatrizA(matrizA);
-    pedirmatrizB(matrizB);
-    printmatrizA(matrizA);
-    printmatrizB(matrizB);
-    matrizcFINAL(matrizA, matrizB);
+
     
     return (EXIT_SUCCESS);
 }

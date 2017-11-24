@@ -11,22 +11,7 @@
 
 #define MAX 10
 
-int pedirtamanho() {
-    while (1) {
-        puts("Introduza o tamanho da matriz (maximo: 10x10)");
-        puts("LINHAS:");
-        scanf("%d", &linhas);
-        puts("COLUNAS:");
-        scanf("%d", &colunas);
 
-        if (linhas > MAX && colunas > MAX) {
-            puts("Tamanho fora do limite");
-        } else {
-            break;
-        }
-    }
-    return linhas, colunas;
-}
 
 void pedirmatrizA(int matriz[][colunas]) {
     int i, j;
@@ -69,25 +54,6 @@ void printmatrizB(int matriz[][colunas]) {
     for (i = 0; i < linhas; ++i) {
         for (j = 0; j < colunas; ++j) {
             printf(" %d", matriz[i][j]);
-        }
-        puts(" ");
-    }
-}
-
-void matrizcFINAL(int matrizA[][colunas], int matrizB[][colunas]) {
-    int i, j;
-    int matrizC[linhas][colunas];
-
-    for (i = 0; i < linhas; ++i) {
-        for (j = 0; j < colunas; ++j) {
-            matrizC[i][j] = matrizA[i][j] * matrizB[i][j];
-        }
-    }
-
-    puts("Matriz C");
-    for (i = 0; i < linhas; ++i) {
-        for (j = 0; j < colunas; ++j) {
-            printf(" %d", matrizC[i][j]);
         }
         puts(" ");
     }

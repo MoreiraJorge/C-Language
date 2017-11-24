@@ -4,7 +4,6 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
-      <itemPath>Utils.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -14,7 +13,6 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>Exercicio6.c</itemPath>
-      <itemPath>Utils.c</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -40,10 +38,6 @@
       </compileType>
       <item path="Exercicio6.c" ex="false" tool="0" flavor2="0">
       </item>
-      <item path="Utils.c" ex="false" tool="0" flavor2="0">
-      </item>
-      <item path="Utils.h" ex="false" tool="3" flavor2="0">
-      </item>
     </conf>
     <conf name="Release" type="1">
       <toolsSet>
@@ -66,10 +60,6 @@
         </asmTool>
       </compileType>
       <item path="Exercicio6.c" ex="false" tool="0" flavor2="0">
-      </item>
-      <item path="Utils.c" ex="false" tool="0" flavor2="0">
-      </item>
-      <item path="Utils.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>

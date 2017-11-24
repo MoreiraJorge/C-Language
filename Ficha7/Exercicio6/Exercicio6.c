@@ -59,7 +59,6 @@ int main(int argc, char** argv) {
 //Multiplicaçao da matriz, segundo a condicao ColunasA = LinhasB
         for (i = 0; i < LinhasA; ++i) {
             for (j = 0; j < ColunasB; ++j) {
-                matrizC[i][j] = 0;
                 for (k = 0; k < LinhasB; ++k) {
                     matrizC[i][j] = matrizA[i][k] * matrizB [k][j];
                 }

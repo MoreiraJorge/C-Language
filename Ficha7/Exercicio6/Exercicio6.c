@@ -22,7 +22,6 @@ int main(int argc, char** argv) {
     int ColunasA, ColunasB;
     int matrizA[MAX][MAX];
     int matrizB[MAX][MAX], matrizC[MAX][MAX];
-    int aux = 0;
 
     while (1) {
         puts("Introduza as quantidades de linhas da matriz A");
@@ -57,18 +56,19 @@ int main(int argc, char** argv) {
                 scanf("%d", &matrizB[i][j]);
             }
         }
-
+//Multiplicaçao da matriz, segundo a condicao ColunasA = LinhasB
         for (i = 0; i < LinhasA; ++i) {
             for (j = 0; j < ColunasB; ++j) {
                 matrizC[i][j] = 0;
                 for (k = 0; k < LinhasB; ++k) {
-                    aux += matrizA[i][k] * matrizB [k][j];
+                    matrizC[i][j] = matrizA[i][k] * matrizB [k][j];
                 }
-                matrizC[i][j] = aux;
-                aux = 0;
+
             }
         } /* K significa que a quantidade de colunas da Matriz A é mesma  que as linhas 
 da Matriz B */
+        
+        //Impressao de todas as matrizes
         puts("MATRIZ A");
         for(i = 0; i < LinhasA; ++i){
             for (j = 0; j < ColunasA; ++j){

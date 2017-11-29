@@ -44,25 +44,34 @@ void preenchertabela(char tabela[][TAM], char token[MAX]) {
             clean_buffer();
             puts("COLUNA (coloque letras maiusculas!!):");
             scanf("%c", &posj);
+            clean_buffer();
 
-            if (posj == 'A' && tabela[posi][posj] == ESPACO) {
+            if (posj == 'A' && tabela[posi][1] == ESPACO) {
                 tabela[posi][1] = token[i];
-            } else if (posj == 'B' && tabela[posi][posj] == ESPACO) {
+            } else if (posj == 'B' && tabela[posi][2] == ESPACO) {
                 tabela[posi][2] = token[i];
-            } else if (posj == 'C' && tabela[posi][posj] == ESPACO) {
+            } else if (posj == 'C' && tabela[posi][3] == ESPACO) {
                 tabela[posi][3] = token[i];
-            } else if (posj == 'D' && tabela[posi][posj] == ESPACO) {
+            } else if (posj == 'D' && tabela[posi][4] == ESPACO) {
                 tabela[posi][4] = token[i];
-            } else if (posj == 'E' && tabela[posi][posj] == ESPACO) {
+            } else if (posj == 'E' && tabela[posi][5] == ESPACO) {
                 tabela[posi][5] = token[i];
-            } else if (posj == 'F' && tabela[posi][posj] == ESPACO) {
+            } else if (posj == 'F' && tabela[posi][6] == ESPACO) {
                 tabela[posi][6] = token[i];
-            } else if (posj == 'G' && tabela[posi][posj] == ESPACO) {
+            } else if (posj == 'G' && tabela[posi][7] == ESPACO) {
                 tabela[posi][7] = token[i];
-            } else if (posj == 'H' && tabela[posi][posj] == ESPACO) {
+            } else if (posj == 'H' && tabela[posi][8] == ESPACO) {
                 tabela[posi][8] = token[i];
-            } else if (posj == 'I' && tabela[posi][posj] == ESPACO) {
+            } else if (posj == 'I' && tabela[posi][9] == ESPACO) {
                 tabela[posi][9] = token[i];
+            } else if(posi == 0 && posj == 'Z'){
+                if(i = 0){
+                    puts("O jogador 1 desistiu!!!");
+                    puts("Vitoria do jogador 2!!!");
+                } else {
+                    puts("O jogador 2 desistiu!!!");
+                    puts("Vitoria do jogador 1!!!"); 
+                }
             } else {
                 --i;
                 puts("posicao ocpada, jogue novamente!");

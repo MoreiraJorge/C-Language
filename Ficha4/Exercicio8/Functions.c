@@ -23,7 +23,6 @@ void readgrade() {
     }
 }
 
-
 void graderepeat(int max){
     int i = 0;
     

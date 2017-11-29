@@ -22,7 +22,6 @@ int main(int argc, char** argv) {
     
     graderepeat(max);
     
-    
     return (EXIT_SUCCESS);
 }
 

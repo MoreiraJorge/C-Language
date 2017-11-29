@@ -13,21 +13,22 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "Functions.h"
 
 /*
  * 
  */
 int main(int argc, char** argv) {
-    
+
     int n;
-    
+
     puts("Introduza um limite de numeros");
     scanf("%d", &n);
-    
-    printnumbers(n);
-    
-    
-    return (EXIT_SUCCESS);
+
+    do {
+        n++;
+        printf("%d", n);
+
+    } while n<=n;
+        return (EXIT_SUCCESS);
 }
 

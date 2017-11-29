@@ -13,7 +13,7 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>Trabalho1.c</itemPath>
+      <itemPath>Exercicio5.c</itemPath>
       <itemPath>Utils.c</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -38,7 +38,7 @@
       </toolsSet>
       <compileType>
       </compileType>
-      <item path="Trabalho1.c" ex="false" tool="0" flavor2="0">
+      <item path="Exercicio5.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="Utils.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -65,7 +65,7 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
-      <item path="Trabalho1.c" ex="false" tool="0" flavor2="0">
+      <item path="Exercicio5.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="Utils.c" ex="false" tool="0" flavor2="0">
       </item>

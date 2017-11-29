@@ -33,6 +33,7 @@ void mostra(char tabela[][TAM]) {
 void preenchertabela(char tabela[][TAM], char token[MAX]) {
     int posi, i, j, k;
     char posj;
+    int saida;
 
     while (1) {
         puts("");
@@ -64,55 +65,31 @@ void preenchertabela(char tabela[][TAM], char token[MAX]) {
                 tabela[posi][8] = token[i];
             } else if (posj == 'I' && tabela[posi][9] == ESPACO) {
                 tabela[posi][9] = token[i];
-            } else if(posi == 0 && posj == 'Z'){
-                if(i = 0){
+            } else if (posi == 0 && posj == 'Z') {
+                if (i = 0) {
                     puts("O jogador 1 desistiu!!!");
                     puts("Vitoria do jogador 2!!!");
+                    saida++;
+                    break;
                 } else {
                     puts("O jogador 2 desistiu!!!");
-                    puts("Vitoria do jogador 1!!!"); 
+                    puts("Vitoria do jogador 1!!!");
+                    saida++;
+                    break;
                 }
             } else {
                 --i;
                 puts("posicao ocpada, jogue novamente!");
                 continue;
             }
-            
+
+            contarjogadas++;
             mostra(tabela);
-            /*else {
-            --i;
-            puts("posicao ocupada, jogue novamente!");
-            continue;
+            
         }
-             */
-            /*
-            if (posj == tabela[0][j] && tabela[posi][posj] == ESPACO) {
-                tabela[posi][j] = token[i];
-                mostra(tabela);
-            } else {
-                --i;
-                puts("posicao ocpada, jogue novamente!");
-                continue;
-            }
-             */
-            /*if (posj == 'B' && tabela[posi][posj] == ESPACO){
-                tabela[posi][2]=token[i];    
-                mostra(tabela);
-            }*/
-
-
-
-            /*if (tabela[posi][posj] == ESPACO) { //posicao livre
-                tabela[posi][posj] = token[i];
-                mostra(tabela);
-            } else {
-                --i;
-                puts("posicao ocpada, jogue novamente!");
-                continue;
-            }
-             */
+        if (saida > 0) {
+            break;
         }
-        contarjogadas++;
     }
 }
 //pedir tokens aos jogadores

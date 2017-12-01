@@ -35,6 +35,7 @@ void mostra(char tabela[][TAM]) {
 void preenchertabela(char tabela[][TAM], char token[MAX]) {
     int posi, i, k;
     char posj;
+    char letra = 65;
     int saida = 0;
 
     while (1) {
@@ -53,9 +54,9 @@ void preenchertabela(char tabela[][TAM], char token[MAX]) {
             //verifica as colunas todas num so IF 
 
             for (k = 0; k < TAM; ++k) {
-                if (posj == (65 + k) && posi > 0 && posi <= TAM) {
-                    if (tabela[posi][((65 + k) - 65)] == ESPACO) {
-                        tabela[posi][((65 + k) - 65)];
+                if (posj == (letra + k) && posi > 0 && posi <= TAM) {
+                    if (tabela[posi][((letra + k) - 65)] == ESPACO) {
+                        tabela[posi][((letra + k) - 65)] = token[i];
                     }
                 }
             }

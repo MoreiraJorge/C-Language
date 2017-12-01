@@ -16,39 +16,48 @@
 int contarjogadas = 1;
 
 int verificarcolunas(char tabela[][TAM], int posi, char posj, char token[MAX], int i, int saida) {
-    int k, j = 1;
-    //verificar as letras para todas as colunas e se estao livres preencher
-    if (tabela[posi][j] == ESPACO) {
-        for (k = 0; k < TAM; ++k) {
-            if (posj == (64 + j) && tabela[posi][j] == ESPACO) {
-                tabela[posi][j] = token[i];
-                break;
+    int k, j = 1, l;
+
+
+    if (posi > 0 && posi < TAM && posj < 'I') {
+        
+        if (tabela[posi][j] == ESPACO) {
+                for (k = 0; k < TAM; ++k) {
+                    if (posj == (64 + j) && tabela[posi][j] == ESPACO) {
+                        tabela[posi][j] = token[i];
+                        break;
+                    }
+                    j++;
+                }
+
+                /*depois de correr a linha 0, o j tem de voltar ao valor 1, se nao 
+                 esta sempre a incrementar e nao preenche as posicoes corretamente*/
+                //voltar a por j em 1
+                j = 1;
             }
-            j++;
-        }
-
-        /*depois de correr a linha 0, o j tem de voltar ao valor 1, se nao 
-         esta sempre a incrementar e nao preenche as posicoes corretamente*/
-        //voltar a por j em 1
-        j = 1;
-
-    } else if (posi == 0 && posj == 'Z') {
-        if (i == 0) {
-            puts("O jogador 1 desistiu!!!");
-            puts("Vitoria do jogador 2!!!");
-            printf("Jogadas: %d", contarjogadas);
-            saida++;
+        
+        if (posi == 0 && posj == 'Z') {
+            if (i == 0) {
+                puts("O jogador 1 desistiu!!!");
+                puts("Vitoria do jogador 2!!!");
+                printf("Jogadas: %d", contarjogadas);
+                saida++;
+            } else {
+                puts("O jogador 2 desistiu!!!");
+                puts("Vitoria do jogador 1!!!");
+                printf("Jogadas: %d", contarjogadas);
+                saida++;
+            }
         } else {
-            puts("O jogador 2 desistiu!!!");
-            puts("Vitoria do jogador 1!!!");
-            printf("Jogadas: %d", contarjogadas);
-            saida++;
+            --i;
+            puts("posicao ocupada, jogue novamente!");
         }
     } else {
         --i;
-        puts("posicao ocupada, jogue novamente!");
+        puts("Posicao inexistente!!");
     }
-    return saida;
+
+    return saida, i;
 }
 
 //impressao da matriz
@@ -84,7 +93,9 @@ void preenchertabela(char tabela[][TAM], char token[MAX]) {
             scanf("%c", &posj);
             clean_buffer();
 
-            verificarcolunas(tabela,posi,posj,token,i,saida);
+            //verificar as letras para todas as colunas e se estao livres preencher
+         
+            verificarcolunas(tabela, posi, posj, token, i, saida);
 
             contarjogadas++;
             mostra(tabela);

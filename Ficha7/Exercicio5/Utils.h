@@ -8,7 +8,11 @@
 #ifndef UTILS_H
 #define UTILS_H
 
+#define MAX 3
 
+void FillMatrix(int matrix[][MAX]);
+void writeMatrix(int matrix[][MAX]);
+void printreversedmatrix(int matrix[][MAX]);
 
 #endif /* UTILS_H */
 

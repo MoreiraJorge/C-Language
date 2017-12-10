@@ -9,9 +9,17 @@
 #include <stdlib.h>
 #include "Utils.h"
 
+#define MAX 3
+
 
 int main(int argc, char** argv) {
-
+    int i, j;
+    int matrix[MAX][MAX];
+    
+    FillMatrix(matrix);
+    writeMatrix(matrix);
+    printreversedmatrix(matrix);
+    
     return (EXIT_SUCCESS);
 }
 

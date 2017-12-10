@@ -1,0 +1,78 @@
+/*else {
+            --i;
+            puts("posicao ocupada, jogue novamente!");
+            continue;
+        }
+             */
+            /*
+
+            if (posj == tabela[0][j] && tabela[posi][posj] == ESPACO) {
+                tabela[posi][j] = token[i];
+                
+            } else {
+                --i;
+                puts("posicao ocpada, jogue novamente!");
+                continue;
+            }
+             */
+            /*if (posj == 'B' && tabela[posi][posj] == ESPACO){
+                tabela[posi][2]=token[i];    
+                mostra(tabela);
+            }*/
+
+
+
+            /*if (tabela[posi][posj] == ESPACO) { //posicao livre
+                tabela[posi][posj] = token[i];
+                mostra(tabela);
+            } else {
+                --i;
+                puts("posicao ocpada, jogue novamente!");
+                continue;
+            }
+
+
+
+
+
+
+
+/*
+            if (posj == 'A' && tabela[posi][1] == ESPACO) {
+                tabela[posi][1] = token[i];
+            } else if (posj == 'B' && tabela[posi][2] == ESPACO) {
+                tabela[posi][2] = token[i];
+            } else if (posj == 'C' && tabela[posi][3] == ESPACO) {
+                tabela[posi][3] = token[i];
+            } else if (posj == 'D' && tabela[posi][4] == ESPACO) {
+                tabela[posi][4] = token[i];
+            } else if (posj == 'E' && tabela[posi][5] == ESPACO) {
+                tabela[posi][5] = token[i];
+            } else if (posj == 'F' && tabela[posi][6] == ESPACO) {
+                tabela[posi][6] = token[i];
+            } else if (posj == 'G' && tabela[posi][7] == ESPACO) {
+                tabela[posi][7] = token[i];
+            } else if (posj == 'H' && tabela[posi][8] == ESPACO) {
+                tabela[posi][8] = token[i];
+            } else if (posj == 'I' && tabela[posi][9] == ESPACO) {
+                tabela[posi][9] = token[i];
+             */
+
+
+
+if (tabela[posi][j] == ESPACO) {
+                for (k = 0; k < TAM; ++k) {
+                    if (posj == (64 + j) && tabela[posi][j] == ESPACO) {
+                        tabela[posi][j] = token[i];
+                        break;
+                    }
+                    j++;
+                }
+
+
+
+
+
+
+
+

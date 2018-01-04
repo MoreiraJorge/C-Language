@@ -57,31 +57,28 @@ void printall(Players player[], int counter) {
 
 void binary_file_insert(Players player[], char *file) {
     int i;
-    
+
     FILE *f = fopen(file, "wb");
 
-    for (i = 0; i < MAX_PLAYER; ++i){  
-        
-        fwrite(&player[i], sizeof(Players),1,f);
+    for (i = 0; i < MAX_PLAYER; ++i) {
+        fwrite(&player[i], sizeof (Players), 1, f);
     }
     fclose(f);
 }
 
-void binary_file_list(char *file) {
+void binary_file_list(Players player[], char *file) {
 
     int i;
 
-    Players reg;
+    FILE *f = fopen(file, "rb");
 
-    FILE *f = fopen(file,"rb");
-    
-    for(i = 0; i < MAX_PLAYER; ++i) {
-        fread(&reg, sizeof(Players), 1, f);
-        printf("Nome: %s | Token: %s\n", reg.name, reg.tokens);
+    for (i = 0; i < MAX_PLAYER; ++i) {
+        fread(&player[i], sizeof (Players), 1, f);
+        printf("Nome: %s | Token: %s\n", player[i].name, player[i].tokens);
 
     }
     fclose(f);
-    
+
     puts("");
 }
 
@@ -89,9 +86,15 @@ void binaryfile(Players player[]) {
     char *file = "players.dat";
 
     binary_file_insert(player, file);
-    binary_file_list(file);
+    binary_file_list(player, file);
+
+}
+
+/*
+void filecopy(){
     
 }
+ */
 
 int main(int argc, char** argv) {
     int counter = 0;
@@ -99,7 +102,7 @@ int main(int argc, char** argv) {
 
     printf("1. inserir jogador\n");
     printf("2. listar jogadores\n");
-    printf("3. Ficheiro .dat");
+    printf("3. Ficheiro .dat\n");
     printf("0. sair\n");
 
     do {

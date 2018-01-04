@@ -54,16 +54,17 @@ void printall(Players player[], int counter) {
         printf("Token: %s\n", player[i].tokens);
     }
 }
-void readfile(Players player[]){
 
-    int i=0;
+void readfile(Players player[]) {
+
+    int i = 0;
 
     FILE *f = fopen("players.dat", "rb");
 
     for (i = 0; i < MAX_PLAYER; ++i) {
-        fread(&player[i], sizeof(Players), 1, f);
+        fread(&player[i], sizeof (Players), 1, f);
     }
- 
+
     fclose(f);
 
     puts(" ");
@@ -103,7 +104,7 @@ void filecopy(char *file) {
     FILE *f = fopen(file, "rb");
     FILE *file_backup = fopen("player_backup.dat", "wb");
     if (f != NULL && file_backup != NULL) {
-        while ((ch = getc(f)) != EOF){
+        while ((ch = getc(f)) != EOF) {
             putc(ch, file_backup);
         }
         fclose(f);
@@ -121,32 +122,45 @@ void binaryfile(Players player[]) {
 
 }
 
-int main(int argc, char** argv) {
-    int counter = 0;
-    int opc;
+void menu(Players player[]){
+  int counter = 0;
+  int opc;
+  
+  printf("1. inserir jogador\n");
+        printf("2. listar jogadores\n");
+        printf("3. Ficheiro .dat\n");
+        printf("4. copiar ficheiro\n");
+        printf("0. sair\n");
+
+        do {
+            printf("Opcao Escolhida:");
+            scanf("%d", &opc);
+            switch (opc) {
+                case 1: counter = insert(player, counter);
+                    break;
+                case 2: printall(player, counter);
+                    break;
+                case 3: binaryfile(player);
+                    break;
+                case 0: break;
+                default: puts("Opcao incorreta");
+            }
+
+        } while (opc != 0);
     
-    readfile(player);
-    printf("1. inserir jogador\n");
-    printf("2. listar jogadores\n");
-    printf("3. Ficheiro .dat\n");
-    printf("4. copiar ficheiro\n");
-    printf("0. sair\n");
+}
 
-    do {
-        printf("Opcao Escolhida:");
-        scanf("%d", &opc);
-        switch (opc) {
-            case 1: counter = insert(player, counter);
-                break;
-            case 2: printall(player, counter);
-                break;
-            case 3: binaryfile(player);
-                break;
-            case 0: break;
-            default: puts("Opcao incorreta");
-        }
+int main(int argc, char** argv) {
+    
 
-    } while (opc != 0);
+    FILE *f = fopen("players.dat", "rb");
+
+    if (f != NULL) {
+        readfile(player);
+        menu(player);
+    } else {
+        menu(player);
+    }
     return (EXIT_SUCCESS);
 }
 

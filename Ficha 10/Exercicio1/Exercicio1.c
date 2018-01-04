@@ -161,6 +161,8 @@ int main(int argc, char** argv) {
     } else {
         menu(player);
     }
+    
+    fclose(f);
     return (EXIT_SUCCESS);
 }
 

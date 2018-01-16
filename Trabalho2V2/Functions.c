@@ -88,7 +88,7 @@ int search(Player player, int plyrcount) {
     readfile(new_player);
     for (; i < plyrcount; ++i) {
 
-        if (strcmp(player.name, new_player[i].name)) {
+        if (strcmp(player.name, new_player[i].name) == 0) {
             return 1;
         }
     }
@@ -139,7 +139,7 @@ int verify(int table[][SIZE], Player player[MAX_PLYR], int totalcount, int i, in
 
     //ciclo para 4 em linha na horizontal
     for (k = 0; k < SIZE; ++k) {
-        for (j = 0; j < SIZE; ++j) {
+        for (j = 0; j < SIZE - 3; ++j) {
             if (table[k][j] != BLANK &&
                     table[k][j] == table[k][j + 1] &&
                     table[k][j] == table[k][j + 2] &&
@@ -159,7 +159,7 @@ int verify(int table[][SIZE], Player player[MAX_PLYR], int totalcount, int i, in
     }
 
     //ciclo para 4 em linha na vertical
-    for (k = 0; k < SIZE - 2; ++k) {
+    for (k = 0; k < SIZE - 3; ++k) {
         for (j = 0; j < SIZE; ++j) {
             if (table[k][j] != BLANK &&
                     table[k][j] == table[k + 1][j] &&
@@ -180,8 +180,8 @@ int verify(int table[][SIZE], Player player[MAX_PLYR], int totalcount, int i, in
     }
 
     //diagonais de esquerda para direita
-    for (k = 0; k < SIZE - 2; ++k) {
-        for (j = 0; j < SIZE - 2; ++j) {
+    for (k = 0; k < SIZE - 3; ++k) {
+        for (j = 0; j < SIZE - 3; ++j) {
             if (table[k][j] != BLANK &&
                     table[k][j] == table[k + 1][j + 1] &&
                     table[k][j] == table[k + 2][j + 2] &&
@@ -210,8 +210,8 @@ int verify(int table[][SIZE], Player player[MAX_PLYR], int totalcount, int i, in
      *                         x
      *                        x     
      */
-    for (k = 0; k < SIZE - 2; ++k) {
-        for (j = 0; j < SIZE - 2; ++j) {
+    for (k = 0; k < SIZE - 3; ++k) {
+        for (j = 0; j < SIZE - 3; ++j) {
             if (table[k][j + 3] != BLANK &&
                     table[k][j + 3] == table[k + 1][j + 2] &&
                     table[k][j + 3] == table[k + 2][j + 1] &&
@@ -246,8 +246,8 @@ int verify(int table[][SIZE], Player player[MAX_PLYR], int totalcount, int i, in
 //------------------------------------------------------------------------------
 //---------------------------------FILL TABLE-----------------------------------
 
-int filltable(int table[][SIZE], Player player[MAX_PLYR], int totalcount) {
-    int i, j, k, posi = 0;
+int filltable(int table[][SIZE], Player player[MAX_PLYR], int gamecount) {
+    int i, j, k, posi = 0, totalcount = 1;
     char posj;
     int exit = 0;
     int exit2 = 0;
@@ -295,15 +295,17 @@ int filltable(int table[][SIZE], Player player[MAX_PLYR], int totalcount) {
                 if (i == 0) {
                     printf("%s desistiu!!!", player[0].name);
                     printf("Vitoria de %s!!!", player[1].name);
-                    player[i].points = player[i].points + 3;
+                    player[1].points = player[1].points + 3;
                     printf("Jogadas: %d\n", totalcount);
+                    gamecount++;
                     exit++;
                     break;
                 } else {
                     printf("%s desistiu!!!", player[1].name);
                     printf("Vitoria de %s!!!", player[0].name);
-                    player[i].points = player[i].points + 3;
+                    player[0].points = player[0].points + 3;
                     printf("Jogadas: %d\n", totalcount);
+                    gamecount++;
                     exit++;
                     break;
                 }
@@ -318,14 +320,177 @@ int filltable(int table[][SIZE], Player player[MAX_PLYR], int totalcount) {
             break;
         }
     }
-    return totalcount++;
+    return gamecount;
 }
 //------------------------------------------------------------------------------
 
+void AI(int table[][SIZE], Player player[MAX_PLYR]) {
+    int k, j, x, z;
+  
+    //Horizontal ( a frente )
+    for (k = 0; k < SIZE; ++k) {
+        for (j = 0; j < SIZE - 2; ++j) {
+            if (table[k][j + 2] == BLANK &&
+                    table[k][j] == 0 &&
+                    table[k][j] == table[k][j + 1]) {
+                table[k][j + 2] = 1;
+                printf("JOGADA AI\n");
+                showtable(table, player);
+                return;
+            }
+        }
+    }
+
+    //Horizontal ( atras )
+    for (k = 0; k < SIZE; ++k) {
+        for (j = 0; j < SIZE; ++j) {
+            if (table[k][j - 3] == BLANK &&
+                    table[k][j] == 0 &&
+                    table[k][j] == table[k][j - 1] &&
+                    table[k][j] == table[k][j - 2]) {
+                table[k][j - 3] = 1;
+                printf("JOGADA AI\n");
+                showtable(table, player);
+                return;
+            }
+        }
+    }
+
+
+    //Vertical (em baixo)
+    for (k = 0; k < SIZE - 2; ++k) {
+        for (j = 0; j < SIZE; ++j) {
+            if (table[k + 2][j] == BLANK &&
+                    table[k][j] == 0 &&
+                    table[k][j] == table[k + 1][j]) {
+                table[k + 2][j] = 1;
+                printf("JOGADA AI\n");
+                showtable(table, player);
+                return;
+            }
+        }
+    }
+
+    //Vertical (em cima)
+    for (k = 0; k < SIZE; ++k) {
+        for (j = 0; j < SIZE; ++j) {
+            if (table[k - 3][j] == BLANK &&
+                    table[k][j] == 0 &&
+                    table[k][j] == table[k - 1][j] &&
+                    table[k][j] == table[k - 2][j]) {
+                table[k - 3][j] = 1;
+                printf("JOGADA AI\n");
+                showtable(table, player);
+                return;
+            }
+        }
+    }
+
+    //diagonais esquerda -> direita com token em baixo
+    //poe o token na 3ª posicao
+    
+    for (k = 0; k < SIZE - 2; ++k) {
+        for (j = 0; j < SIZE - 2; ++j) {
+            if (table[k + 2][j + 2] == BLANK &&
+                    table[k][j] == 0 &&
+                    table[k][j] == table[k + 1][j + 1]) {
+                table[k + 2][j + 2] = 1;
+                printf("JOGADA AI\n");
+                showtable(table, player);
+                return;
+            }
+        }
+    }
+    
+    //diagonais esquerda -> direita com token em cima
+    //poe o token na segunda posicao pois conta a partir do token da ponta
+    //em cima.
+    /*
+    for (k = 0; k < SIZE - 3; ++k) {
+        for (j = 0; j < SIZE - 3; ++j) {
+            if (table[k - 1][j - 1] == BLANK &&
+                    table[k][j] == 0) {
+                table[k - 1][j - 1] = 1;
+                printf("JOGADA AI\n");
+                showtable(table, player);
+                return;
+            }
+        }
+    }
+    */
+    /* posto isto, nas diagonais, se houver 3 tokens na diagonal
+     o token do AI sera colocado na posicao em baixo que conta como
+     se fosse a terceira posicao de um 4 em linha, e o token de cima
+     conta como se fosse a segunda posicao
+     ou seja coloca o token AI em baixo quando estao dois tokens de joga-
+     dor seguidos na diagonal, e coloca o token AI em cima quando estao
+     3 seguidos, mas conta a partir do token da ponta*/
+    /**
+    //diagonais direita -> esquerda com token em baixo
+    for (k = 0; k < SIZE - 2; ++k) {
+        for (j = 0; j < SIZE - 2; ++j) {
+            if (table[k][j + 2] == 0 &&
+                    table[k][j + 2] == table[k + 1][j + 1] &&
+                    table[k + 2][j] == BLANK) {
+                table[k + 2][j] = 1;
+                printf("JOGADA AI\n");
+                showtable(table, player);
+                return;
+            }
+        }
+    }
+    */
+    /*
+    //diagonais direita -> esquerda com token em cima
+    for (k = 0; k < SIZE; ++k) {
+        for (j = 0; j < SIZE; ++j) {
+            if (table[k][j + 2] == 0 &&    
+                table[k][j + 2] == table[k - 2][j + 2] &&
+                table[k - 3][j + 3] == BLANK) {
+                table[k - 3][j + 3] = 1;
+                printf("JOGADA AI\n");
+                showtable(table, player);
+            }
+        }
+    }
+    */
+
+
+    //random
+    
+    for(k=0; k< SIZE; ++k){
+      for(j=0; j< SIZE; ++j){
+         if(table[k][j] == BLANK){
+            table[k][j] = 1;
+            printf("JOGADA AI\n");
+            showtable(table, player);
+            return;
+         }
+      }
+    }
+   
+    
+    /*
+    for (k = 0; k < SIZE; ++k) {
+        for (j = 0; j < SIZE; ++j) {
+            if (table[k][j] == BLANK) {
+                srand(time(NULL));
+                x = rand() % 9;
+                z = rand() % 9;
+                table[x][z] = 1;
+                return;
+            }
+        }
+
+    }
+    */
+}
+//------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 
-int filltableVSAI(int table[][SIZE], Player player[MAX_PLYR], int totalcount) {
+int filltableVSAI(int table[][SIZE], Player player[MAX_PLYR], int gamecount) {
     int i, j, k, posi = 0, m, n, x, z;
+    int totalcount = 1;
     char posj;
     int exit = 0;
     int exit2 = 0;
@@ -372,17 +537,19 @@ int filltableVSAI(int table[][SIZE], Player player[MAX_PLYR], int totalcount) {
 
                 if (posi == 0 && posj == 90) {
                     if (i == 0) {
-                        puts("O jogador 1 desistiu!!!");
-                        puts("Vitoria do jogador 2!!!");
-                        player[i].points = player[i].points + 3;
+                        printf("%s desistiu!!!\n", player[0].name);
+                        printf("Vitoria de %s!!!\n", player[1].name);
+                        player[1].points = player[1].points + 3;
                         printf("Jogadas: %d\n", totalcount);
+                        gamecount++;
                         exit++;
                         break;
                     } else {
-                        puts("O jogador 2 desistiu!!!");
-                        puts("Vitoria do jogador 1!!!");
-                        player[i].points = player[i].points + 3;
+                        printf("%s desistiu!!!\n", player[1].name);
+                        printf("Vitoria de %s!!!\n", player[0].name);
+                        player[0].points = player[0].points + 3;
                         printf("Jogadas: %d\n", totalcount);
+                        gamecount++;
                         exit++;
                         break;
                     }
@@ -391,165 +558,8 @@ int filltableVSAI(int table[][SIZE], Player player[MAX_PLYR], int totalcount) {
                 // AI --------------------------------------------------------------    
             } else if (i == 1) {
 
-                //random
-                for (k = 0; k < SIZE; ++k) {
-                    for (j = 0; j < SIZE; ++j) {
-                        if (table[k][j] == BLANK) {
-                            srand(time(NULL));
-                            for (i = 0; i < (SIZE * SIZE); ++i) {
-                                x = rand() % 10;
-                                z = rand() % 10;
-                            }
-                            table[x][z] = 1;
-                        }
-                    }
-                }
-
-                for (k = 0; k < SIZE; k++) {
-                    for (j = 0; j < SIZE; ++j) {
-                        //PREENCHER OS CANTOS
-                        if (table[0][0] == 0) {
-                            table[CORNER][CORNER] = 1;
-                            printf("JOGADA AI\n");
-                            showtable(table, player);
-                            break;
-                        } else if (table[CORNER][CORNER] == 0) {
-                            table[0][0] = 1;
-                            printf("JOGADA AI\n");
-                            showtable(table, player);
-                            break;
-                        } else if (table[0][CORNER] == 0) {
-                            table[CORNER][0] = 1;
-                            printf("JOGADA AI\n");
-                            showtable(table, player);
-                            break;
-                        } else if (table[CORNER][0] == 0) {
-                            table[0][CORNER] = 1;
-                            printf("JOGADA AI\n");
-                            showtable(table, player);
-                        }
-                    }
-                    break;
-                }
-
-                //Horizontal ( a frente )
-                for (k = 0; k < SIZE; ++k) {
-                    for (j = 0; j < SIZE; ++j) {
-                        if (table[k][j + 2] == BLANK &&
-                                table[k][j] == 0 &&
-                                table[k][j] == table[k][j + 1]) {
-                            table[k][j + 2] = 1;
-                            printf("JOGADA AI\n");
-                            showtable(table, player);
-                        }
-                    }
-                }
-
-                //Horizontal ( atras )
-                for (k = 0; k < SIZE; ++k) {
-                    for (j = 0; j < SIZE; ++j) {
-                        if (table[k][j - 2] == BLANK &&
-                                table[k][j + 2] == 1 &&
-                                table[k][j] == 0 &&
-                                table[k][j] == table[k][j - 1]) {
-                            table[k][j - 2] = 1;
-                            printf("JOGADA AI\n");
-                            showtable(table, player);
-                        }
-                    }
-                }
-
-                //Vertical (em baixo)
-                for (k = 0; k < SIZE; ++k) {
-                    for (j = 0; j < SIZE; ++j) {
-                        if (table[k + 2][j] == BLANK &&
-                                table[k][j] == 0 &&
-                                table[k][j] == table[k + 1][j]) {
-                            table[k + 2][j] = 1;
-                            printf("JOGADA AI\n");
-                            showtable(table, player);
-                        }
-                    }
-                }
-
-                //Vertical (em cima)
-                for (k = 0; k < SIZE; ++k) {
-                    for (j = 0; j < SIZE; ++j) {
-                        if (table[k - 2][j] == BLANK &&
-                                table[k + 2][j] == 1 &&
-                                table[k][j] == 0 &&
-                                table[k][j] == table[k - 1][j]) {
-                            table[k - 2][j] = 1;
-                            printf("JOGADA AI\n");
-                            showtable(table, player);
-                        }
-                    }
-                }
-
-                //diagonais esquerda -> direita com token em baixo
-                //poe o token na 3ª posicao
-                for (k = 0; k < SIZE - 2; ++k) {
-                    for (j = 0; j < SIZE - 2; ++j) {
-                        if (table[k + 2][j + 2] == BLANK &&
-                                table[k][j] == 0 &&
-                                table[k][j] == table[k + 1][j + 1]) {
-                            table[k + 2][j + 2] = 1;
-                            printf("JOGADA AI\n");
-                            showtable(table, player);
-                        }
-                    }
-                }
-
-                //diagonais esquerda -> direita com token em cima
-                //poe o token na segunda posicao pois conta a partir do token da ponta
-                //em cima.
-                for (k = 0; k < SIZE; ++k) {
-                    for (j = 0; j < SIZE; ++j) {
-                        if (table[k - 1][j - 1] == BLANK &&
-                                table[k + 2][j + 2] == 0 &&
-                                table[k][j] == 0) {
-                            table[k - 1][j - 1] = 1;
-                            printf("JOGADA AI\n");
-                            showtable(table, player);
-                        }
-                    }
-                }
-                /* posto isto, nas diagonais, se houver 3 tokens na diagonal
-                 o token do AI sera colocado na posicao em baixo que conta como
-                 se fosse a terceira posicao de um 4 em linha, e o token de cima
-                 conta como se fosse a segunda posicao
-                 ou seja coloca o token AI em baixo quando estao dois tokens de joga-
-                 dor seguidos na diagonal, e coloca o token AI em cima quando estao
-                 3 seguidos, mas conta a partir do token da ponta*/
-
-                //diagonais direita -> esquerda com token em baixo
-
-                for (k = 0; k < SIZE; ++k) {
-                    for (j = 0; j < SIZE; ++j) {
-                        if (table[k][j + 2] == 0 &&
-                                table[k][j + 2] == table[k + 1][j + 1] &&
-                                table[k + 2][j] == BLANK) {
-                            table[k + 2][j] = 1;
-                            printf("JOGADA AI\n");
-                            showtable(table, player);
-                        }
-                    }
-                }
-                /*
-                for (k = 0; k < SIZE; ++k) {
-                    for (j = 0; j < SIZE; ++j) {
-                        if (table[k][j + 2] == 0 &&    
-                            table[k][j + 2] == table[k - 2][j + 2] &&
-                            table[k - 3][j + 3] == BLANK) {
-                            table[k - 3][j + 3] = 1;
-                            printf("JOGADA AI\n");
-                            showtable(table, player);
-                        }
-                    }
-                }
-                 */
-
-                exit2 = verify(table, player, totalcount, i, exit2);
+                AI(table, player);
+                exit2 = verify(table, player, gamecount, 1, exit2);
 
                 if (exit2 > 0) {
                     exit++;
@@ -565,19 +575,19 @@ int filltableVSAI(int table[][SIZE], Player player[MAX_PLYR], int totalcount) {
             break;
         }
     }
-    return totalcount++;
+    return gamecount;
 }
 //------------------------------------------------------------------------------
 //----------------------------------SAVE FILE-----------------------------------
 
-void savefile(Player player[], int totalcount) {
+void savefile(Player player[], int gamecount) {
 
     int i;
     for (i = 0; i < MAX_PLYR; ++i) {
-        player[i].games = totalcount;
+        player[i].games = gamecount;
     }
 
-    FILE *file = fopen("game.dat", "ab");
+    FILE *file = fopen("game.dat", "wb");
 
     for (i = 0; i < MAX_PLYR; ++i) {
 
@@ -604,7 +614,6 @@ void readfile(Player player[]) {
     }
 
     fclose(file);
-    printf("FILE LOADED!!!\n");
 }
 //------------------------------------------------------------------------------
 //-------------------------------SHOW SCOREBOARD--------------------------------
@@ -622,6 +631,7 @@ void Showscore(Player player[]) {
         printf("\t%d\t", player[i].games);
         printf("\t%d\t", player[i].points);
         puts("");
+
     }
 }
 //------------------------------------------------------------------------------
@@ -629,17 +639,16 @@ void Showscore(Player player[]) {
 
 void menu(int table[][SIZE], Player player[]) {
     int opc;
-    int totalcount = 1;
+    int gamecount = 0;
     int plyrcount = 0;
 
-
-    printf("Bem Vindo ao 4 em linha!!\n");
-    printf("       MAIN MENU\n");
-    printf("1. Jogador V Jogador\n");
-    printf("2. Jogador V Computador\n");
-    printf("3. Consultar ScoreBoard\n");
-    printf("0. Sair\n");
     do {
+        printf("Bem Vindo ao 4 em linha!!\n");
+        printf("       MAIN MENU\n");
+        printf("1. Jogador V Jogador\n");
+        printf("2. Jogador V Computador\n");
+        printf("3. Consultar ScoreBoard\n");
+        printf("0. Sair\n");
 
         printf("Opcao Escolhida:");
         scanf("%d", &opc);
@@ -648,15 +657,15 @@ void menu(int table[][SIZE], Player player[]) {
                 init(table);
                 showtable(table, player);
                 plyrcount = insert(player, plyrcount);
-                totalcount = filltable(table, player, totalcount);
-                savefile(player, totalcount);
+                gamecount = filltable(table, player, gamecount);
+                savefile(player, gamecount);
                 break;
             case 2:
                 init(table);
                 showtable(table, player);
                 plyrcount = insert(player, plyrcount);
-                totalcount = filltableVSAI(table, player, totalcount);
-
+                gamecount = filltableVSAI(table, player, gamecount);
+                savefile(player, gamecount);
                 break;
             case 3:
                 readfile(player);

@@ -14,9 +14,9 @@
 int main(int argc, char** argv) {
     char token[MAX];
     char tabela[TAM][TAM];
-
-    initabela(tabela);
+    
     puts("TABELA DE JOGO INICIAL");
+    initabela(tabela);
     mostra(tabela);
     pedirtoken(token);
     preenchertabela(tabela, token);

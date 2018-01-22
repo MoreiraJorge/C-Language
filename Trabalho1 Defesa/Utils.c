@@ -10,7 +10,7 @@
 #include <string.h>
 #include "Utils.h"
 
-#define TAM 15
+#define TAM 10
 #define MAX 2
 #define ESPACO ' '
 #define MAX_NOM 10
@@ -174,6 +174,7 @@ void preenchertabela(char tabela[][TAM], char token[MAX]) {
              *                          x
              *                         x     
              */
+             
             for (k = 1; k < TAM - 2; ++k) {
                 for (j = 1; j < TAM - 2; ++j) {
                     if (tabela[k][j + 2] != ESPACO &&
@@ -191,7 +192,7 @@ void preenchertabela(char tabela[][TAM], char token[MAX]) {
                     break;
                 }
             }
-
+           
             // n e preciso ler as ultimas duas posicoes em linha e coluna
             //Os ciclos vao sempre ao token da esquerda em linhas!!!!  e em colunas vao ao de cima 
             //quando verificar o 3 em linha fecha o ciclo dos jogadores e o while
@@ -204,12 +205,15 @@ void preenchertabela(char tabela[][TAM], char token[MAX]) {
              * https://www.portugal-a-programar.pt/forums/topic/49616-ajuda-no-jogo-4-em-linha/
              * 
              */
+             
             if (saida2 > 0) {
                 saida++;
                 break;
             }
+            
             //------------------------------------------------------------------
             //posicao para desistir
+            
             if (posi == 0 && posj == 'Z') {
                 if (i == 0) {
                     puts("O jogador 1 desistiu!!!");
@@ -234,12 +238,11 @@ void preenchertabela(char tabela[][TAM], char token[MAX]) {
                 break;
             }
             //-----
-
+              
             mostra(tabela);
         }
         contarjogadas++;
         if (saida > 0) {
-
             break;
         }
     }
@@ -268,36 +271,35 @@ void pedirtoken(char token[MAX]) {
 
 void initabela(char tabela[][TAM]) {
     int i, j;
-    char linha0 = 65;
-    
+    char letter = 65;
 
+    
+    //colocar letras
+    printf(" ");
+    printf("|");
+    for (j = 0; j < TAM; ++j) {
+        printf("%c", letter);
+        printf("|");
+        ++letter;
+    }
+    puts(" ");
+    
     //por tudo vazio 
     for (i = 0; i < TAM; ++i) {
         for (j = 0; j < TAM; ++j) {
             tabela[i][j] = ESPACO;
+            printf(" |");
         }
+        puts(" ");
     }
-
-    tabela[0][0] = '+'; //posicao [0][0] ocupada
-
-    //primeira coluna com numeros
-    for (i = 1; i < TAM; ++i) {
-        tabela[i][0] = '0' + i;
-    }
-
-    //primeira linha letras
-    for (j = 1; j < TAM; ++j) {
-
-        tabela[0][j] = linha0;
-        linha0++;
-    }
-
     
-    for (i = 1; i < TAM; ++i){
-        if(tabela[i][0] > 57){
-            tabela[i][0] = 57.48 ;
-        }
+    //colocar numeros
+    for (i = 0; i < TAM; ++i) {
+        printf("%d", i + 1);
+        printf("|");
         
+        puts(" ");
     }
-  
+    
+    
 }

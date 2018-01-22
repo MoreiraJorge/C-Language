@@ -9,14 +9,15 @@
 #define UTILS_H
 
 #include <string.h>
-#define TAM 15
+#define TAM 10
 #define MAX 2
 #define ESPACO ' '
+#define MAX_NOM 10
 
 void clean_buffer();
 void mostra(char tabela[][TAM]);
-void preenchertabela(char tabela[][TAM], char token[MAX]);
-void pedirtoken(char token[MAX]);
+//void preenchertabela(char tabela[][TAM], char token[MAX]);
+//void pedirtoken(char token[MAX]);
 void initabela(char tabela[][TAM]);
 int lerString(char *string, int max);
 
